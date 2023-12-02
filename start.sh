@@ -1,12 +1,11 @@
-import os
-from os.path import join, dirname
-from dotenv import load_dotenv
-
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-
-MONGODB_URI = os.environ.get("MONGODB_URI")
-DB_NAME = os.environ.get("DB_NAME")
-
-client = MongoClient(MONGODB_URI)
-db = client[DB_NAME]
+set -eu
+export PYTHONUNBUFFERED=true
+VIRTUALENV=.data/venv
+if [ -d SVIRTUALENV ]; then python3 -m venv SVIRTUALENV
+fi
+if [ -f $VIRTUALENV/bin/pip ]; then
+curl --silent --show-error-retry 5 https://bootstrap.pypa.io/get-pip.py | SVIRTUALE
+fi
+$VIRTUALENV/bin/pip install -r requirements.txt
+SVIRTUALENV/bin/python3 app.py
+Footer
